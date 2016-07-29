@@ -53,7 +53,6 @@ class FastQueue {
 
     /** returns false if Q is full */
     public boolean insert(int val) {
-        System.err.print("inserting " + val + " ");
         int tail = isFull();
         if (tail == -1) {
             return false;
@@ -66,7 +65,6 @@ class FastQueue {
 
     /** returns -1 if Q is empty */
     public int remove() {
-        System.err.print("removing ");
         int head = isEmpty();
         if (head == -1) {
             return -1;
@@ -118,36 +116,5 @@ class FastQueue {
                 System.err.print(elements[i] + " ");
         }
         System.err.println( "} - head " + getHead() + ", tail " + getTail() );
-    }
-
-    public static void test() {
-        FastQueue fq = new FastQueue(2);
-        System.err.println(fq.remove());   // fail { }
-        fq.print();
-        System.err.println(fq.insert(1)); // {1}
-        fq.print();
-        System.err.println(fq.insert(2)); // {1 2}
-        fq.print();
-        System.err.println(fq.insert(3)); // fail {1 2}
-        fq.print();
-
-        System.err.println(fq.remove());  // {2}
-        fq.print();
-        System.err.println(fq.remove());  // {}
-        fq.print();
-        System.err.println(fq.remove());  // fail {}
-        fq.print();
-        System.err.println(fq.insert(4)); // {4}
-        fq.print();
-        System.err.println(fq.insert(5)); // {4 5}
-        fq.print();
-
-        System.err.println(fq.remove());  // {5}
-        fq.print();
-
-        System.err.println(fq.insert(6)); // {5 6}
-        fq.print();
-        System.err.println(fq.insert(7)); // fail {7}
-        fq.print();
     }
 }
