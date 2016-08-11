@@ -5,7 +5,7 @@ package hwx;
  */
 
 
-class Timer {
+public class Timer {
     private final String who;
     private long start, done=0;
     public Timer(String who) {
