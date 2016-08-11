@@ -2,12 +2,11 @@ package hwx;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-/**
- * Created by rnaik on 7/28/16.
- */
+
 class FastQueue {
     private int[] elements;
     private AtomicLong headAndTail = new AtomicLong(0);
+    byte[] padding = new byte[64];
     public static final long tailMask = 0x000000007fffffffL;  // to drop higher 33 bits
 
     public static final long headIncrementVal = 0x0000000100000000L;
