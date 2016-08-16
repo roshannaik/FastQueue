@@ -18,7 +18,7 @@ public class Utils {
     }
 
     public static String now() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss:SSSS");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss:SSS");
         Date date = new Date();
         return dateFormat.format(date);
     }

@@ -131,10 +131,10 @@ public class FastQueue2<T> extends  HeadAndTail implements Qu<T> {
         run1Producer1Consumer(size, times);
 
         runConcurrently_LA_MPSC(1, size, times);
-//        runConcurrently_LA_MPSC(2, size, times);
-//        runConcurrently_LA_MPSC(3, size, times);
-//        runConcurrently_LA_MPSC(4, size, times);
-//        runConcurrently_LA_MPSC(8, size, times);
+        runConcurrently_LA_MPSC(2, size, times);
+        runConcurrently_LA_MPSC(3, size, times);
+        runConcurrently_LA_MPSC(4, size, times);
+        runConcurrently_LA_MPSC(8, size, times);
     }
 
     private static void runConcurrently_LA_MPSC(int producerCount, int size, int times) {
@@ -151,10 +151,12 @@ public class FastQueue2<T> extends  HeadAndTail implements Qu<T> {
         Consumer_mulitQ c = new Consumer_mulitQ(producerCount, times, qs);
 
         try {
+            c.start();
+
             for(int i=0; i<producerCount; ++i)
                 producers[i].start();
 
-            c.start();
+
 
             for(int i=0; i<producerCount; ++i)
                 producers[i].join();
@@ -268,7 +270,7 @@ public class FastQueue2<T> extends  HeadAndTail implements Qu<T> {
             return p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8;
         }
 
-    } // class ConsumerLA
+    } // class Consumer
 
 
     static class Consumer_mulitQ extends Thread {
