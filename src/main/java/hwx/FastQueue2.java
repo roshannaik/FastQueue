@@ -128,13 +128,14 @@ public class FastQueue2<T> extends  HeadAndTail implements Qu<T> {
         final int size = 2 * 1024 * 1024;
         final int times = size * 40;
 
-        run1Producer1Consumer(size, times);
-
-        runConcurrently_LA_MPSC(1, size, times);
-        runConcurrently_LA_MPSC(2, size, times);
-        runConcurrently_LA_MPSC(3, size, times);
-        runConcurrently_LA_MPSC(4, size, times);
-        runConcurrently_LA_MPSC(8, size, times);
+        runSequentially();
+//        run1Producer1Consumer(size, times);
+//
+//        runConcurrently_LA_MPSC(1, size, times);
+//        runConcurrently_LA_MPSC(2, size, times);
+//        runConcurrently_LA_MPSC(3, size, times);
+//        runConcurrently_LA_MPSC(4, size, times);
+//        runConcurrently_LA_MPSC(8, size, times);
     }
 
     private static void runConcurrently_LA_MPSC(int producerCount, int size, int times) {
@@ -338,6 +339,26 @@ public class FastQueue2<T> extends  HeadAndTail implements Qu<T> {
 
     }
 
+    private static void runSequentially() {
+        final int size = 16777216;
+        FastQueue2 q = new FastQueue2(size);
+        final int times = size * 1;
+
+        System.err.println("Sequential Run: ------ Q size: " + size);
+        Producer p = new Producer(q, times);
+        Consumer c = new Consumer(q, times);
+
+        try {
+            p.start();
+            p.join();
+            Thread.sleep(1);
+            c.start();
+            c.join();
+        } catch (InterruptedException e) {
+            System.err.println("interrupted");
+            e.printStackTrace();
+        }
+    }
 
 
 } // class FastQueue2

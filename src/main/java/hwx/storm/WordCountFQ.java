@@ -33,7 +33,7 @@ public class WordCountFQ {
 
         CounterBolt counterBolt = new CounterBolt();
         NoOpGrouping ng = new NoOpGrouping();
-        BoltOutputCollector<None> boc2 = new BoltOutputCollector<None>(ng);
+        BoltOutputCollector<None> boc2 = new BoltOutputCollector<>(ng);
 
         BoltExecutor<String, None> boltExecutor2 = new BoltExecutor<>(q2, counterBolt, boc2);
 
